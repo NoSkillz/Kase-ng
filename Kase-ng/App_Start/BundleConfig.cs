@@ -17,8 +17,8 @@ namespace Kase_ng
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/bootstrap.min.js",
+                      "~/Scripts/respond.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.min.css",
@@ -27,8 +27,9 @@ namespace Kase_ng
                       "~/Content/site.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/angularjs").Include(
-                    "~/Scripts/angular.js",
-                    "~/Scripts/ang*"));
+                    "~/Scripts/angular.min.js",
+                    "~/Scripts/angular-mocks.js",
+                    "~/Scripts/angular-resource.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                     "~/Scripts/app.js",

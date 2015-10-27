@@ -8,9 +8,9 @@
     var testCaseService = angular.module('testCaseService', ['ngResource']);
     testCaseService.factory('TestCases', ['$resource',
         function ($resource) {
-            return $resource('/Kase-ng/api/TestCase/', {}, {
+            return $resource('/Kase-ng/api/TestCase/:id', {}, {
                 query: { method: 'GET', params: {}, isArray: true }
-            });
+            }, { id: '@id' });
         }
     ]);
 })();
