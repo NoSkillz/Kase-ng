@@ -22,9 +22,8 @@ namespace Kase_ng
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.min.css",
-                      "~/Content/bootstrap-theme.min.css",
-                      "~/Content/holo.css",
-                      "~/Content/site.css"));
+                      //"~/Content/bootstrap-theme.min.css",
+                      "~/Content/styles.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/angularjs").Include(
                     "~/Scripts/angular.min.js",
@@ -34,7 +33,8 @@ namespace Kase_ng
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                     "~/Scripts/app.js",
                     "~/Scripts/Controllers/testCaseController.js",
-                    "~/Scripts/Services/testCaseService.js"));
+                    "~/Scripts/Services/testCaseService.js"
+                    ));
         }
     }
 }

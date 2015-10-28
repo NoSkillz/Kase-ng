@@ -1,8 +1,14 @@
-﻿<div>
-    <div ng-controller="testCaseController">
-        <h2>Test cases</h2>
-        <ul ng-repeat="tc in testCases">
-            <li ng-click="GetSteps(tc.Id)">{{tc.Id}} {{tc.Name}} {{tc.Description}}</li>
-        </ul>
+﻿@* Test cases *@
+<div class="col-sm-6">
+    <div class="panel panel-default" ng-controller="testCaseController">
+        <div class="panel-heading">
+            <h4>Test cases</h4>
+        </div>
+        <div class="panel-body">
+            <div class="list-group" ng-repeat="tc in testCases">
+                <span class="label label-success">{{tc.TestCaseStatus.Name}}</span>
+                <a class="list-group-item">{{tc.Id}} {{tc.Name}}</a>
+            </div>
+        </div>
     </div>
 </div>

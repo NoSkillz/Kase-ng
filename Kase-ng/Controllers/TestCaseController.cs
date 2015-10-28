@@ -5,26 +5,34 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Kase_ng.Models;
+using Kase_ng.DataAccess;
 
 namespace Kase_ng.Controllers
 {
     public class TestCaseController : ApiController
     {
-        [HttpGet]
-        public IHttpActionResult Get()
-        {
-            var tcs = TestCase.GetSample();
+        KaseDbContext context;
 
-            return Ok(tcs);
+        public TestCaseController()
+        {
+            context = new KaseDbContext();
         }
 
-        [HttpGet]
-        public IHttpActionResult Get(int id)
-        {
-            var tcs = TestCase.GetSample();
 
-            var tc = tcs.FirstOrDefault(i => i.Id == id);
-            return Ok(tc);
+        public IEnumerable<TestCase> Get()
+        {
+            var tcs = context.TestCases.Select(p => p);
+
+            return tcs;
+        }
+
+        public TestCase Get(int id)
+        {
+            var tcs = context.TestCases.Select(p => p);
+
+            var tc = tcs.FirstOrDefault(p => p.Id == id);
+
+            return tc;
         }
     }
 }
