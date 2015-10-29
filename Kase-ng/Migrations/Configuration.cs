@@ -18,24 +18,24 @@ namespace Kase_ng.Migrations
         // TODO maybe change string to enum
         protected override void Seed(KaseDbContext context)
         {
-            context.TestCaseStatuses.AddOrUpdate(
+            context.ItemStatuses.AddOrUpdate(
                 p => p.Id,
-                new TestCaseStatus
+                new ItemStatus
                 {
                     Id = 1,
                     Name = "Pass"
                 },
-                new TestCaseStatus
+                new ItemStatus
                 {
                     Id = 2,
                     Name = "Fail"
                 },
-                new TestCaseStatus
+                new ItemStatus
                 {
                     Id = 3,
                     Name = "Not run"
                 },
-                new TestCaseStatus
+                new ItemStatus
                 {
                     Id = 4,
                     Name = "Blocked"
@@ -50,7 +50,7 @@ namespace Kase_ng.Migrations
                     Name = "Test cases can be created",
                     Description = "Test to run to ensure that cases can be created in the application",
                     LastRun = DateTime.Now,
-                    TestCaseStatus = context.TestCaseStatuses.Where(t => t.Name == "Pass").First()
+                    ItemStatus = context.ItemStatuses.Where(t => t.Name == "Pass").First()
                 },
                 new TestCase
                 {
@@ -58,7 +58,7 @@ namespace Kase_ng.Migrations
                     Name = "Can create tasks",
                     Description = "Creation of tasks. This should be run weekly",
                     LastRun = DateTime.Now,
-                    TestCaseStatus = context.TestCaseStatuses.Where(t => t.Name == "Fail").First()
+                    ItemStatus = context.ItemStatuses.Where(t => t.Name == "Fail").First()
                 },
                 new TestCase
                 {
@@ -66,7 +66,7 @@ namespace Kase_ng.Migrations
                     Name = "Can apply classes",
                     Description = "Test if classes can be applied",
                     LastRun = DateTime.Now,
-                    TestCaseStatus = context.TestCaseStatuses.Where(t => t.Name == "Blocked").First()
+                    ItemStatus = context.ItemStatuses.Where(t => t.Name == "Blocked").First()
                 },
                 new TestCase
                 {
@@ -74,7 +74,7 @@ namespace Kase_ng.Migrations
                     Name = "Can change task status",
                     Description = "Test if statuses can be changed",
                     LastRun = DateTime.Now,
-                    TestCaseStatus = context.TestCaseStatuses.Where(t => t.Name == "Not run").First()
+                    ItemStatus = context.ItemStatuses.Where(t => t.Name == "Not run").First()
                 },
                 new TestCase
                 {
@@ -82,7 +82,7 @@ namespace Kase_ng.Migrations
                     Name = "Can add test cases",
                     Description = "Test for adding test cases",
                     LastRun = DateTime.Now,
-                    TestCaseStatus = context.TestCaseStatuses.Where(t => t.Name == "Not run").First()
+                    ItemStatus = context.ItemStatuses.Where(t => t.Name == "Not run").First()
                 }
                 );
 

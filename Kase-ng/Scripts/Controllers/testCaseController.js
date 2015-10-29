@@ -19,16 +19,16 @@
         //TODO: Make sure that test case statuses update along with steps
 
         $scope.applyStatusLabel = function (tc) {
-            if (tc.TestCaseStatus.Name === "Pass") {
+            if (tc.ItemStatus.Name === "Pass") {
                 return 'label label-success';
             };
-            if (tc.TestCaseStatus.Name === "Fail") {
+            if (tc.ItemStatus.Name === "Fail") {
                 return 'label label-danger';
             };
-            if (tc.TestCaseStatus.Name === "Not run") {
+            if (tc.ItemStatus.Name === "Not run") {
                 return 'label label-info';
             };
-            if (tc.TestCaseStatus.Name === "Blocked") {
+            if (tc.ItemStatus.Name === "Blocked") {
                 return 'label label-default';
             };
         };

@@ -6,8 +6,7 @@
         </div>
         <div class="panel-body">
             <div class="list-group" ng-repeat="tc in testCases">
-@*                <span ng-class="{'label label-success': tc.TestCaseStatus.Name == 'Pass'}">{{tc.TestCaseStatus.Name}}</span>*@
-                <span ng-class="applyStatusLabel(tc)">{{tc.TestCaseStatus.Name}}</span>
+                <span ng-class="applyStatusLabel(tc)">{{tc.ItemStatus.Name}}</span>
 
                 <div ng-click="getSteps(tc.Id)">
                     <p class="list-group-item">{{tc.Id}} {{tc.Name}}</p>

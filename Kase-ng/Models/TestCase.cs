@@ -11,7 +11,7 @@ namespace Kase_ng.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime LastRun { get; set; }
-        public virtual TestCaseStatus TestCaseStatus { get; set; }
+        public virtual ItemStatus ItemStatus { get; set; }
         
         //TODO: Workout areas and other upper levels
     }
