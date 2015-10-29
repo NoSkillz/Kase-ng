@@ -33,7 +33,7 @@ namespace Kase_ng.Migrations
                 new TestCaseStatus
                 {
                     Id = 3,
-                    Name = "Not tested"
+                    Name = "Not run"
                 },
                 new TestCaseStatus
                 {
@@ -59,7 +59,32 @@ namespace Kase_ng.Migrations
                     Description = "Creation of tasks. This should be run weekly",
                     LastRun = DateTime.Now,
                     TestCaseStatus = context.TestCaseStatuses.Where(t => t.Name == "Fail").First()
-                });
+                },
+                new TestCase
+                {
+                    Id = 3,
+                    Name = "Can apply classes",
+                    Description = "Test if classes can be applied",
+                    LastRun = DateTime.Now,
+                    TestCaseStatus = context.TestCaseStatuses.Where(t => t.Name == "Blocked").First()
+                },
+                new TestCase
+                {
+                    Id = 4,
+                    Name = "Can change task status",
+                    Description = "Test if statuses can be changed",
+                    LastRun = DateTime.Now,
+                    TestCaseStatus = context.TestCaseStatuses.Where(t => t.Name == "Not run").First()
+                },
+                new TestCase
+                {
+                    Id = 5,
+                    Name = "Can add test cases",
+                    Description = "Test for adding test cases",
+                    LastRun = DateTime.Now,
+                    TestCaseStatus = context.TestCaseStatuses.Where(t => t.Name == "Not run").First()
+                }
+                );
 
             context.SaveChanges();
         }
