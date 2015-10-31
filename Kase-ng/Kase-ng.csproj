@@ -221,6 +221,7 @@
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Step.cs" />
     <Compile Include="Models\TestCase.cs" />
     <Compile Include="Models\ItemStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -235,7 +236,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\holo.css" />
-    <Content Include="Content\styles.css" />
+    <Content Include="Content\holo-style.css" />
+    <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Areas\HelpPage\Views\Web.config" />

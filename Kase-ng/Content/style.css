@@ -1,0 +1,12 @@
+﻿.label {
+    position: absolute;
+    right: 7%;
+    transform: translateY(-180%);
+}
+
+.test-item {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding-right: 70px;
+}

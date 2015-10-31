@@ -30,5 +30,6 @@ namespace Kase_ng.DataAccess
 
         public DbSet<TestCase> TestCases { get; set; }
         public DbSet<ItemStatus> ItemStatuses { get; set; }
+        public DbSet<Step> Steps { get; set; }
     }
 }

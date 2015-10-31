@@ -23,7 +23,8 @@ namespace Kase_ng
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.min.css",
                       //"~/Content/bootstrap-theme.min.css",
-                      "~/Content/styles.css"));
+                      "~/Content/holo-style.css",
+                      "~/Content/style.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/angularjs").Include(
                     "~/Scripts/angular.min.js",

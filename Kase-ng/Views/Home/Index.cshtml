@@ -6,12 +6,13 @@
         </div>
         <div class="panel-body">
             <div class="list-group" ng-repeat="tc in testCases">
-                <span ng-class="applyStatusLabel(tc)">{{tc.ItemStatus.Name}}</span>
-
                 <div ng-click="getSteps(tc.Id)">
-                    <p class="list-group-item">{{tc.Id}} {{tc.Name}}</p>
+                    <div title="{{tc.Name}}"class="list-group-item test-item">{{tc.Name}}</div>
+                    <span title="Last run: {{tc.LastRun}}" ng-class="applyStatusLabel(tc)">{{tc.ItemStatus.Name}}</span>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+@* TODO: Make the date for tc.LastRun friendly ffs *@

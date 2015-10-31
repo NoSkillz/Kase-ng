@@ -55,8 +55,8 @@ namespace Kase_ng.Migrations
                 new TestCase
                 {
                     Id = 2,
-                    Name = "Can create tasks",
-                    Description = "Creation of tasks. This should be run weekly",
+                    Name = "Can edit test cases",
+                    Description = "Editing of test cases.",
                     LastRun = DateTime.Now,
                     ItemStatus = context.ItemStatuses.Where(t => t.Name == "Fail").First()
                 },
@@ -83,9 +83,70 @@ namespace Kase_ng.Migrations
                     Description = "Test for adding test cases",
                     LastRun = DateTime.Now,
                     ItemStatus = context.ItemStatuses.Where(t => t.Name == "Not run").First()
-                }
-                );
+                },
+                new TestCase
+                {
+                    Id = 6,
+                    Name = "Test cases with long names look nice in the page. We should test this out. See how it looks. It this enough?",
+                    Description = "I needed this",
+                    LastRun = DateTime.Now,
+                    ItemStatus = context.ItemStatuses.Where(t => t.Name == "Pass").First()
+                });
+            context.SaveChanges();
 
+            context.Steps.AddOrUpdate(
+                p => p.Id,
+                // Steps for first test case
+                new Step
+                {
+                    Id = 1,
+                    Name = "Can go to page",
+                    ItemStatus = context.ItemStatuses.Where(t => t.Name == "Pass").First(),
+                    TestCase = context.TestCases.Where(t => t.Id == 1).First()
+                },
+                new Step
+                {
+                    Id = 2,
+                    Name = "Clicking on the add button allows a way to input a test case name",
+                    ItemStatus = context.ItemStatuses.Where(t => t.Name == "Pass").First(),
+                    TestCase = context.TestCases.Where(t => t.Id == 1).First()
+                },
+                new Step
+                {
+                    Id = 3,
+                    Name = "Test case name cannot be empty",
+                    ItemStatus = context.ItemStatuses.Where(t => t.Name == "Fail").First(),
+                    TestCase = context.TestCases.Where(t => t.Id == 1).First()
+                },
+                new Step
+                {
+                    Id = 4,
+                    Name = "Test cases can be created",
+                    ItemStatus = context.ItemStatuses.Where(t => t.Name == "Not run").First(),
+                    TestCase = context.TestCases.Where(t => t.Id == 1).First()
+                },
+                // Steps for second test case
+                new Step
+                {
+                    Id = 5,
+                    Name = "Can access page",
+                    ItemStatus = context.ItemStatuses.Where(t => t.Name == "Pass").First(),
+                    TestCase = context.TestCases.Where(t => t.Id == 2).First()
+                },
+                new Step
+                {
+                    Id = 6,
+                    Name = "There's a way to allow editing of test cases",
+                    ItemStatus = context.ItemStatuses.Where(t => t.Name == "Blocked").First(),
+                    TestCase = context.TestCases.Where(t => t.Id == 2).First()
+                },
+                new Step
+                {
+                    Id = 7,
+                    Name = "You can save edit the test case name and save changes",
+                    ItemStatus = context.ItemStatuses.Where(t => t.Name == "Not run").First(),
+                    TestCase = context.TestCases.Where(t => t.Id == 2).First()
+                });
             context.SaveChanges();
         }
     }
