@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using Kase_ng.Models;
 using Kase_ng.DataAccess;
+using System.Web.Http.Results;
 
 namespace Kase_ng.Controllers
 {
@@ -33,6 +34,19 @@ namespace Kase_ng.Controllers
             var tc = tcs.FirstOrDefault(p => p.Id == id);
 
             return tc;
+        }
+
+        public IHttpActionResult Post(TestCase tc)
+        {
+            if (ModelState.IsValid)
+            {
+                tc.LastRun = null;
+                context.TestCases.Add(tc);
+                context.SaveChanges();
+                return Ok();
+            }
+
+            return new InvalidModelStateResult(ModelState, this);
         }
     }
 }

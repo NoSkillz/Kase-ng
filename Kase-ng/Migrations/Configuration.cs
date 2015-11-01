@@ -48,7 +48,6 @@ namespace Kase_ng.Migrations
                 {
                     Id = 1,
                     Name = "Test cases can be created",
-                    Description = "Test to run to ensure that cases can be created in the application",
                     LastRun = DateTime.Now,
                     ItemStatus = context.ItemStatuses.Where(t => t.Name == "Pass").First()
                 },
@@ -56,7 +55,6 @@ namespace Kase_ng.Migrations
                 {
                     Id = 2,
                     Name = "Can edit test cases",
-                    Description = "Editing of test cases.",
                     LastRun = DateTime.Now,
                     ItemStatus = context.ItemStatuses.Where(t => t.Name == "Fail").First()
                 },
@@ -64,7 +62,6 @@ namespace Kase_ng.Migrations
                 {
                     Id = 3,
                     Name = "Can apply classes",
-                    Description = "Test if classes can be applied",
                     LastRun = DateTime.Now,
                     ItemStatus = context.ItemStatuses.Where(t => t.Name == "Blocked").First()
                 },
@@ -72,7 +69,6 @@ namespace Kase_ng.Migrations
                 {
                     Id = 4,
                     Name = "Can change task status",
-                    Description = "Test if statuses can be changed",
                     LastRun = DateTime.Now,
                     ItemStatus = context.ItemStatuses.Where(t => t.Name == "Not run").First()
                 },
@@ -80,7 +76,6 @@ namespace Kase_ng.Migrations
                 {
                     Id = 5,
                     Name = "Can add test cases",
-                    Description = "Test for adding test cases",
                     LastRun = DateTime.Now,
                     ItemStatus = context.ItemStatuses.Where(t => t.Name == "Not run").First()
                 },
@@ -88,7 +83,6 @@ namespace Kase_ng.Migrations
                 {
                     Id = 6,
                     Name = "Test cases with long names look nice in the page. We should test this out. See how it looks. It this enough?",
-                    Description = "I needed this",
                     LastRun = DateTime.Now,
                     ItemStatus = context.ItemStatuses.Where(t => t.Name == "Pass").First()
                 });

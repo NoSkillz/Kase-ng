@@ -7,7 +7,8 @@
         //'ngRoute'
 
         // Custom modules 
-        'testCaseService'
+        'testCaseService',
+        'stepService'
         // 3rd Party Modules
         
     ]);

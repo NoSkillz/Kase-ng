@@ -8,13 +8,30 @@
     testCaseController.$inject = ['$scope', 'TestCases'];
 
     function testCaseController($scope, TestCases) {
-        var testCases = [];
-        testCases = TestCases.query({ id: '' });
+        var updateTestCases = function () {
+            return TestCases.query({ id: '' });
+        }
+
+        var addTestCase = function () {
+
+        }
 
         $scope.getSteps = function (testCaseId) {
             //TODO get steps for TC id
             alert('Test case id: ' + testCaseId);
         };
+
+        $scope.addTestCase = function () {
+            if (this.newTestCaseName) {
+                TestCases.post({ Name: this.newTestCaseName });
+                this.newTestCaseName = '';
+                this.testCases = updateTestCases();
+            }
+        }
+
+
+
+        $scope.newTestCaseName = '';
 
         //TODO: Make sure that test case statuses update along with steps
 
@@ -33,6 +50,18 @@
             };
         };
 
-        $scope.testCases = testCases;
+        $scope.testCases = updateTestCases();
     }
 })();
+
+// test case model
+//{
+//    "Id": 1,
+//    "Name": "sample string 2",
+//    "Description": "sample string 3",
+//    "LastRun": "2015-11-01T08:22:43.972564+02:00",
+//    "ItemStatus": {
+//        "Id": 1,
+//        "Name": "sample string 2"
+//    }
+//}

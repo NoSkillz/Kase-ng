@@ -5,9 +5,15 @@
             <h4>Test cases</h4>
         </div>
         <div class="panel-body">
+            <div class="list-group">
+                <form ng-submit="addTestCase()">
+                    <input class="list-group-item test-item new-test-item" type="text" ng-model="newTestCaseName" placeholder="Todo..." />
+                    <input type="submit" hidden/>
+                </form>
+            </div>
             <div class="list-group" ng-repeat="tc in testCases">
                 <div ng-click="getSteps(tc.Id)">
-                    <div title="{{tc.Name}}"class="list-group-item test-item">{{tc.Name}}</div>
+                    <div title="{{tc.Name}}" class="list-group-item test-item">{{tc.Name}}</div>
                     <span title="Last run: {{tc.LastRun}}" ng-class="applyStatusLabel(tc)">{{tc.ItemStatus.Name}}</span>
                 </div>
             </div>
@@ -16,3 +22,21 @@
 </div>
 
 @* TODO: Make the date for tc.LastRun friendly ffs *@
+
+
+
+@* Steps *@
+<div class="col-sm-6">
+    <div class="panel panel-default" ng-controller="stepController">
+        <div class="panel-heading">
+            <h4>Steps {{message}}</h4>
+        </div>
+        <div class="panel-body">
+            <div class="list-group" ng-repeat="step in steps">
+                <div>
+                    <div title="{{step.Name}}" class="list-group-item test-item">{{step.Name}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -34,7 +34,9 @@ namespace Kase_ng
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                     "~/Scripts/app.js",
                     "~/Scripts/Controllers/testCaseController.js",
-                    "~/Scripts/Services/testCaseService.js"
+                    "~/Scripts/Services/testCaseService.js",
+                    "~/Scripts/Controllers/stepController.js",
+                    "~/Scripts/Services/stepService.js"
                     ));
         }
     }
