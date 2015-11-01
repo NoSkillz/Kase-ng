@@ -4,9 +4,6 @@
     var app = angular.module('Kase');
 
     app.controller('testCaseController', ['$scope', 'TestCases', function ($scope, TestCases) {
-        var updateTestCases = function () {
-            return TestCases.query({ id: '' });
-        }
 
         $scope.getSteps = function (testCaseId) {
             //TODO get steps for TC id
@@ -15,9 +12,11 @@
 
         $scope.addTestCase = function () {
             if (this.newTestCaseName) {
-                //TestCases.post({ Name: this.newTestCaseName });
-                TestCases.post({ Name: this.newTestCaseName }, function (result) {
-                    $scope.testCases = updateTestCases(result);
+                TestCases.post({ Name: this.newTestCaseName }, function (response) {
+                    // The TestController responds with the Id of the submitted test case
+                    // so we can update the test cases in the $scope with
+                    // the newly created test case
+                    $scope.testCases.push(TestCases.get({ id: response.Id }));
                 });
                 this.newTestCaseName = '';
             }
@@ -43,6 +42,6 @@
             };
         };
 
-        $scope.testCases = updateTestCases();
+        $scope.testCases = TestCases.query({ id: '' });
     }])
 })();
