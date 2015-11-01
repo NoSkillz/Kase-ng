@@ -12,10 +12,6 @@
             return TestCases.query({ id: '' });
         }
 
-        var addTestCase = function () {
-
-        }
-
         $scope.getSteps = function (testCaseId) {
             //TODO get steps for TC id
             alert('Test case id: ' + testCaseId);
@@ -23,9 +19,11 @@
 
         $scope.addTestCase = function () {
             if (this.newTestCaseName) {
-                TestCases.post({ Name: this.newTestCaseName });
+                //TestCases.post({ Name: this.newTestCaseName });
+                TestCases.post({ Name: this.newTestCaseName }, function (result) {
+                    $scope.testCases = updateTestCases(result);
+                });
                 this.newTestCaseName = '';
-                this.testCases = updateTestCases();
             }
         }
 

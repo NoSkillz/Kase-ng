@@ -7,6 +7,7 @@ using System.Web.Http;
 using Kase_ng.Models;
 using Kase_ng.DataAccess;
 using System.Web.Http.Results;
+using System.Threading.Tasks;
 
 namespace Kase_ng.Controllers
 {
@@ -36,17 +37,23 @@ namespace Kase_ng.Controllers
             return tc;
         }
 
-        public IHttpActionResult Post(TestCase tc)
+        public IHttpActionResult Post(TestCase testCase)
         {
-            if (ModelState.IsValid)
+            if (testCase.Name == null || testCase.Name.Trim(' ') == string.Empty)
             {
-                tc.LastRun = null;
-                context.TestCases.Add(tc);
-                context.SaveChanges();
-                return Ok();
+                return new InternalServerErrorResult(this);
             }
 
-            return new InvalidModelStateResult(ModelState, this);
+            var tc = new TestCase()
+            {
+                Name = testCase.Name,
+                LastRun = null,
+                ItemStatus = context.ItemStatuses.Where(i => i.Name == "Not run").First()
+            };
+
+            context.TestCases.Add(tc);
+            context.SaveChanges();
+            return Ok();
         }
     }
 }
