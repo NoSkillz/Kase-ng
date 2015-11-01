@@ -1,13 +1,9 @@
 ﻿(function () {
     'use strict';
 
-    angular
-        .module('Kase')
-        .controller('testCaseController', testCaseController);
+    var app = angular.module('Kase');
 
-    testCaseController.$inject = ['$scope', 'TestCases'];
-
-    function testCaseController($scope, TestCases) {
+    app.controller('testCaseController', ['$scope', 'TestCases', function ($scope, TestCases) {
         var updateTestCases = function () {
             return TestCases.query({ id: '' });
         }
@@ -26,7 +22,6 @@
                 this.newTestCaseName = '';
             }
         }
-
 
 
         $scope.newTestCaseName = '';
@@ -49,17 +44,5 @@
         };
 
         $scope.testCases = updateTestCases();
-    }
+    }])
 })();
-
-// test case model
-//{
-//    "Id": 1,
-//    "Name": "sample string 2",
-//    "Description": "sample string 3",
-//    "LastRun": "2015-11-01T08:22:43.972564+02:00",
-//    "ItemStatus": {
-//        "Id": 1,
-//        "Name": "sample string 2"
-//    }
-//}

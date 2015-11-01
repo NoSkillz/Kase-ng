@@ -1,15 +1,11 @@
 ﻿(function () {
     'use strict';
 
-    angular
-        .module('Kase')
-        .controller('stepController', stepController);
+    var app = angular.module('Kase');
 
-    stepController.$inject = ['$scope', 'Steps'];
-
-    function stepController($scope, Steps) {
+    app.controller('stepController', ['$scope', 'Steps', function ($scope, Steps) {
         var steps = [];
         steps = Steps.query({ id: '1' });
         $scope.steps = steps;
-    }
+    }])
 })();

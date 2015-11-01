@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('Kase', [
+    var app = angular.module('Kase', [
         // Angular modules 
 
         //'ngRoute'
