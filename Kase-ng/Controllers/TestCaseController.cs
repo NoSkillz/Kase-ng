@@ -37,11 +37,12 @@ namespace Kase_ng.Controllers
             return tc;
         }
 
-        public IHttpActionResult Post(TestCase testCase)
+        public TestCase Post(TestCase testCase)
         {
             if (testCase.Name == null || testCase.Name.Trim(' ') == string.Empty)
             {
-                return new InternalServerErrorResult(this);
+                // TODO: See how to make this better
+                throw new Exception();
             }
 
             var tc = new TestCase()
@@ -53,7 +54,10 @@ namespace Kase_ng.Controllers
 
             context.TestCases.Add(tc);
             context.SaveChanges();
-            return Ok();
+
+            // TODO Look at this later and see if you can optimize the query. It's pretty weak. It should probably include projects and a better query for daet
+            var createdTestCase = context.TestCases.Where(t => t.Name == testCase.Name && t.LastRun == null).First();
+            return createdTestCase;
         }
     }
 }

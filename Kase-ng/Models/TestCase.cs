@@ -13,5 +13,6 @@ namespace Kase_ng.Models
         public virtual ItemStatus ItemStatus { get; set; }
         
         //TODO: Workout areas and other upper levels
+        //TODO: Will need DateAdded for some operations and maybe querying data to get a report
     }
 }
