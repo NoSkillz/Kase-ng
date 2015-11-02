@@ -7,7 +7,7 @@
         <div class="panel-body">
             <div class="list-group">
                 <form ng-submit="addTestCase()">
-                    <input class="list-group-item test-item new-test-item" type="text" ng-model="newTestCaseName" placeholder="Type a name and press Enter..." />
+                    <input class="list-group-item test-item new-test-item" type="text" ng-model="testCaseName" placeholder="Type a name and press Enter..." />
                     <input type="submit" hidden/>
                 </form>
             </div>
@@ -29,12 +29,19 @@
 <div class="col-sm-6">
     <div class="panel panel-default" ng-controller="stepController">
         <div class="panel-heading">
-            <h4>Steps {{message}}</h4>
+            <h4>Steps</h4>
         </div>
         <div class="panel-body">
+            <div class="list-group">
+                <form ng-submit="addStep()">
+                    <input class="list-group-item test-item new-test-item" type="text" ng-model="stepName" placeholder="Type a name and press Enter..." />
+                    <input type="submit" hidden />
+                </form>
+            </div>
             <div class="list-group" ng-repeat="step in steps">
                 <div>
                     <div title="{{step.Name}}" class="list-group-item test-item">{{step.Name}}</div>
+                    <span ng-class="applyStatusLabel(step)">{{step.ItemStatus.Name}}</span>
                 </div>
             </div>
         </div>

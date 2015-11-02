@@ -3,45 +3,32 @@
 
     var app = angular.module('Kase');
 
-    app.controller('testCaseController', ['$scope', 'TestCases', function ($scope, TestCases) {
+    app.controller('testCaseController', ['$scope', 'TestCases', 'commService', 'statusService', function ($scope, TestCases, commService, statusService) {
+        //Init
+        $scope.testCases = TestCases.query({ id: '' });
+        $scope.testCaseName = '';
+        $scope.applyStatusLabel = function (tc) {
+            return statusService.applyStatusLabel(tc);
+        }
 
+        
         $scope.getSteps = function (testCaseId) {
-            //TODO get steps for TC id
-            alert('Test case id: ' + testCaseId);
+            commService.changeSteps(testCaseId);
         };
-
+        
         $scope.addTestCase = function () {
-            if (this.newTestCaseName) {
-                TestCases.post({ Name: this.newTestCaseName }, function (response) {
+            if (this.testCaseName) {
+                TestCases.post(JSON.stringify(this.testCaseName), function (response) {
                     // The TestController responds with the Id of the submitted test case
                     // so we can update the test cases in the $scope with
                     // the newly created test case
-                    $scope.testCases.push(TestCases.get({ id: response.Id }));
+                    $scope.testCases.push(response);
                 });
-                this.newTestCaseName = '';
+                this.testCaseName = '';
             }
         }
 
-
-        $scope.newTestCaseName = '';
-
         //TODO: Make sure that test case statuses update along with steps
 
-        $scope.applyStatusLabel = function (tc) {
-            if (tc.ItemStatus.Name === "Pass") {
-                return 'label label-success';
-            };
-            if (tc.ItemStatus.Name === "Fail") {
-                return 'label label-danger';
-            };
-            if (tc.ItemStatus.Name === "Not run") {
-                return 'label label-info';
-            };
-            if (tc.ItemStatus.Name === "Blocked") {
-                return 'label label-default';
-            };
-        };
-
-        $scope.testCases = TestCases.query({ id: '' });
     }])
 })();

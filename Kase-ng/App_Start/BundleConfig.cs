@@ -36,7 +36,9 @@ namespace Kase_ng
                     "~/Scripts/Controllers/testCaseController.js",
                     "~/Scripts/Services/testCaseService.js",
                     "~/Scripts/Controllers/stepController.js",
-                    "~/Scripts/Services/stepService.js"
+                    "~/Scripts/Services/stepService.js",
+                    "~/Scripts/Services/commService.js",
+                    "~/Scripts/Services/statusService.js"
                     ));
         }
     }
