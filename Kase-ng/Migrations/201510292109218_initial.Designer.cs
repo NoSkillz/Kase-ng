@@ -18,7 +18,7 @@ namespace Kase_ng.Migrations
         
         string IMigrationMetadata.Source
         {
-            get { return Resources.GetString("Source"); }
+            get { return null; }
         }
         
         string IMigrationMetadata.Target

@@ -7,15 +7,17 @@
         //Init
         $scope.testCases = TestCases.query({ id: '' });
         $scope.testCaseName = '';
-        $scope.applyStatusLabel = function (tc) {
-            return statusService.applyStatusLabel(tc);
+        $scope.active = '';
+        $scope.applyStatusLabel = function (id) {
+            return statusService.applyStatusLabel(id);
+        }
+        
+        // Get's the steps for a selected test case and sets the active (selected) test case in the View
+        $scope.setActive = function (id) {
+            $scope.active = id;
+            commService.changeSteps(id);
         }
 
-        
-        $scope.getSteps = function (testCaseId) {
-            commService.changeSteps(testCaseId);
-        };
-        
         $scope.addTestCase = function () {
             if (this.testCaseName) {
                 TestCases.post(JSON.stringify(this.testCaseName), function (response) {

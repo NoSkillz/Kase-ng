@@ -1,7 +1,9 @@
 ﻿.label {
     position: absolute;
     right: 7%;
-    transform: translateY(-180%);
+    transform: translateY(-165%);
+    z-index: 2;
+    border: 1px solid white;
 }
 
 .test-item {

@@ -12,8 +12,8 @@
                 </form>
             </div>
             <div class="list-group" ng-repeat="tc in testCases">
-                <div ng-click="getSteps(tc.Id)">
-                    <div title="{{tc.Name}}" class="list-group-item test-item">{{tc.Name}}</div>
+                <div ng-click="setActive(tc.Id)">
+                    <div title="{{tc.Name}}" ng-class="{active: tc.Id === active}" class="list-group-item test-item">{{tc.Name}}</div>
                     <span title="Last run: {{tc.LastRun}}" ng-class="applyStatusLabel(tc)">{{tc.ItemStatus.Name}}</span>
                 </div>
             </div>
@@ -39,8 +39,8 @@
                 </form>
             </div>
             <div class="list-group" ng-repeat="step in steps">
-                <div>
-                    <div title="{{step.Name}}" class="list-group-item test-item">{{step.Name}}</div>
+                <div ng-click="setActive(step.Id)">
+                    <div title="{{step.Name}}" ng-class="{active: step.Id === active}" class="list-group-item test-item">{{step.Name}}</div>
                     <span ng-class="applyStatusLabel(step)">{{step.ItemStatus.Name}}</span>
                 </div>
             </div>

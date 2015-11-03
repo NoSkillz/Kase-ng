@@ -6,11 +6,13 @@
     app.controller('stepController', ['$scope', 'Steps', 'commService', 'statusService', function ($scope, Steps, commService, statusService) {
         //Init
         var activeTestCaseId = commService.testCaseId || '1';
-
+        var activeStepId;
         $scope.steps = Steps.query({ id: activeTestCaseId });
         $scope.stepName = '';
-        $scope.applyStatusLabel = function (step) {
-            return statusService.applyStatusLabel(step);
+        $scope.active = '';
+
+        $scope.applyStatusLabel = function (id) {
+            return statusService.applyStatusLabel(id);
         }
 
         $scope.addStep = function () {
@@ -20,6 +22,10 @@
                 });
                 this.stepName = '';
             }
+        }
+
+        $scope.setActive = function (id) {
+            $scope.active = id;
         }
 
         var updateSteps = function () {
