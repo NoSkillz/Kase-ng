@@ -6,6 +6,7 @@ using Kase_ng.Models;
 using Kase_ng.DataAccess;
 using System.Web.Http.Results;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace Kase_ng.Controllers
 {
@@ -17,7 +18,6 @@ namespace Kase_ng.Controllers
         {
             context = new KaseDbContext();
         }
-
 
         public IEnumerable<TestCase> Get()
         {
@@ -35,8 +35,7 @@ namespace Kase_ng.Controllers
             return tc;
         }
 
-        [HttpPost]
-        public TestCase Post([FromBody]string name)
+        public TestCase Post([FromBody] string name)
         {
             if (name == null || name.Trim(' ') == string.Empty)
             {
@@ -48,15 +47,29 @@ namespace Kase_ng.Controllers
             {
                 Name = name,
                 LastRun = null,
-                ItemStatus = context.ItemStatuses.Where(i => i.Name == "Not run").First()
+                ItemStatus = context.ItemStatuses.Where(i => i.Name == "Not run").First(),
+                DateCreated = DateTime.Now
             };
 
             context.TestCases.Add(tc);
             context.SaveChanges();
 
-            // TODO Look at this later and see if you can optimize the query. It's pretty weak. It should probably include projects and a better query for daet
-            var createdTestCase = context.TestCases.Where(t => t.Name == name && t.LastRun == null).First();
-            return createdTestCase;
+            return tc;
+        }
+
+        public TestCase Put(int id, [FromBody]TestCase tc)
+        {
+            if (tc.Name == null || tc.Name.Trim(' ') == string.Empty)
+            {
+                // TODO: See how to make this better
+                throw new Exception();
+            }
+
+            context.TestCases.Attach(tc);
+            context.Entry(tc).State = EntityState.Modified;
+            context.SaveChanges();
+
+            return tc;
         }
     }
 }

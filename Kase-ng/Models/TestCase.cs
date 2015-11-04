@@ -10,9 +10,9 @@ namespace Kase_ng.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public DateTime? LastRun { get; set; }
-        public virtual ItemStatus ItemStatus { get; set; }
-        
+        public DateTime DateCreated { get; set; }
+        public string Prerequisites { get; set; }
+        public virtual ItemStatus ItemStatus { get; set; }    
         //TODO: Workout areas and other upper levels
-        //TODO: Will need DateAdded for some operations and maybe querying data to get a report
     }
 }

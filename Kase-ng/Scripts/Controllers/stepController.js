@@ -5,7 +5,7 @@
 
     app.controller('stepController', ['$scope', 'Steps', 'commService', 'statusService', function ($scope, Steps, commService, statusService) {
         //Init
-        var activeTestCaseId = commService.testCaseId || '1';
+        var activeTestCaseId = commService.testCaseId;
         var activeStepId;
         $scope.steps = Steps.query({ id: activeTestCaseId });
         $scope.stepName = '';

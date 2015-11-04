@@ -1,47 +1,73 @@
 ﻿@* Test cases *@
-<div class="col-sm-6">
-    <div class="panel panel-default" ng-controller="testCaseController">
+<div class="col-sm-6" ng-controller="testCaseController">
+    <div class="panel panel-default">
         <div class="panel-heading">
             <h4>Test cases</h4>
         </div>
         <div class="panel-body">
             <div class="list-group">
                 <form ng-submit="addTestCase()">
-                    <input class="list-group-item test-item new-test-item" type="text" ng-model="testCaseName" placeholder="Type a name and press Enter..." />
-                    <input type="submit" hidden/>
+                    <input class="list-group-item test-item new-test-item" type="text" ng-model="testCaseName" placeholder="This is where you create a test case" />
+                    <input type="submit" hidden />
                 </form>
             </div>
             <div class="list-group" ng-repeat="tc in testCases">
-                <div ng-click="setActive(tc.Id)">
+                <div ng-dblclick="startEditing(tc.Id, tc.Name)" ng-click="setActive(tc.Id)" ng-hide="tc.Id === hidden" ng-class="{'item-blur': tc.Id !== focused && editing}">
                     <div title="{{tc.Name}}" ng-class="{active: tc.Id === active}" class="list-group-item test-item">{{tc.Name}}</div>
                     <span title="Last run: {{tc.LastRun}}" ng-class="applyStatusLabel(tc)">{{tc.ItemStatus.Name}}</span>
+                </div>
+                <div ng-show="tc.Id === hidden">
+                    <form ng-submit="update(tc.Id)">
+                        <input type="text" class="list-group-item test-item new-test-item" ng-model="editedName" />
+                        <input type="submit" hidden />
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-@* TODO: Make the date for tc.LastRun friendly ffs *@
 
-
-
-@* Steps *@
-<div class="col-sm-6">
-    <div class="panel panel-default" ng-controller="stepController">
-        <div class="panel-heading">
-            <h4>Steps</h4>
-        </div>
-        <div class="panel-body">
-            <div class="list-group">
-                <form ng-submit="addStep()">
-                    <input class="list-group-item test-item new-test-item" type="text" ng-model="stepName" placeholder="Type a name and press Enter..." />
-                    <input type="submit" hidden />
-                </form>
+<div div class="col-sm-6">
+    @* Prereqs *@
+    <div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Prerequisites</h4>
             </div>
-            <div class="list-group" ng-repeat="step in steps">
-                <div ng-click="setActive(step.Id)">
-                    <div title="{{step.Name}}" ng-class="{active: step.Id === active}" class="list-group-item test-item">{{step.Name}}</div>
-                    <span ng-class="applyStatusLabel(step)">{{step.ItemStatus.Name}}</span>
+            <div>
+                <div class="panel-body">
+                    <form class="form-group">
+                        <textarea rows="5" class="form-control" placeholder="Use this area to save prerequisites for your test case"></textarea>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @{
+//TODO: Make the date for tc.LastRun friendly ffs
+//TODO We need prerequisites for the test case. Should probably be above the steps
+    }
+
+    @* Steps *@
+    <div ng-controller="stepController">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Steps</h4>
+            </div>
+            <div class="panel-body">
+                <div class="list-group">
+                    <form ng-submit="addStep()">
+                        <input class="list-group-item test-item new-test-item" type="text" ng-model="stepName" placeholder="Add steps here" />
+                        <input type="submit" hidden />
+                    </form>
+                </div>
+                <div class="list-group" ng-repeat="step in steps">
+                    <div ng-click="setActive(step.Id)">
+                        <div title="{{step.Name}}" ng-class="{active: step.Id === active}" class="list-group-item test-item">{{step.Name}}</div>
+                        <span ng-class="applyStatusLabel(step)">{{step.ItemStatus.Name}}</span>
+                    </div>
                 </div>
             </div>
         </div>

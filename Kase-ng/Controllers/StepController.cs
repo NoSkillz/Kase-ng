@@ -38,8 +38,7 @@ namespace Kase_ng.Controllers
             context.Steps.Add(step);
             context.SaveChanges();
 
-            var createdStep = context.Steps.Where(s => s.Name == step.Name && s.TestCase.Id == id).First();
-            return createdStep;
+            return step;
         }
     }
 }
